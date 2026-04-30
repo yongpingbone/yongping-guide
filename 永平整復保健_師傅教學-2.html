@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>永平整復保健 師傅操作教學</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;
+  --text:#f0f6fc;--t2:#8b949e;
+  --red:#e94560;--blue:#74b9ff;--green:#00b894;
+  --cyan:#22d3ee;--gold:#f5a623;--purple:#a29bfe;--orange:#f5a623;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-serif;line-height:1.7;padding-bottom:60px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0d1117 0%,#161b22 50%,#1a1f2e 100%);padding:48px 20px 36px;text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:300px;background:radial-gradient(circle,rgba(233,69,96,.15) 0%,transparent 70%);pointer-events:none}
+.hero-icon{font-size:48px;margin-bottom:12px}
+.hero h1{font-size:26px;font-weight:900;letter-spacing:-.5px;margin-bottom:6px}
+.hero p{font-size:14px;color:var(--t2)}
+
+/* Sticky nav */
+.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 12px;overflow-x:auto;display:flex;scrollbar-width:none}
+.sticky-nav::-webkit-scrollbar{display:none}
+.nav-item{padding:13px 14px;font-size:12px;font-weight:700;color:var(--t2);white-space:nowrap;cursor:pointer;border-bottom:2px solid transparent;transition:.15s;text-decoration:none}
+.nav-item:hover,.nav-item.active{color:var(--cyan);border-bottom-color:var(--cyan)}
+
+/* Content */
+.content{max-width:680px;margin:0 auto;padding:0 16px 40px}
+
+/* Section */
+.section{margin-top:40px;scroll-margin-top:50px}
+.sec-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sec-num{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;flex-shrink:0}
+.sec-num.red{background:#e94560;color:#fff}
+.sec-num.blue{background:#74b9ff;color:#000}
+.sec-num.green{background:#00b894;color:#fff}
+.sec-num.cyan{background:#22d3ee;color:#000}
+.sec-num.gold{background:#f5a623;color:#000}
+.sec-num.purple{background:#a29bfe;color:#000}
+.sec-num.gray{background:#444;color:#fff}
+.sec-title{font-size:20px;font-weight:900;letter-spacing:-.3px}
+
+/* Cards */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px}
+.card-title{font-size:12px;font-weight:700;color:var(--t2);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}
+
+/* Steps */
+.steps{display:flex;flex-direction:column;gap:0}
+.step-item{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border)}
+.step-item:last-child{border:none}
+.step-num{width:28px;height:28px;border-radius:50%;background:rgba(34,211,238,.12);border:1.5px solid var(--cyan);color:var(--cyan);font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.step-num.gold{background:rgba(245,166,35,.12);border-color:var(--gold);color:var(--gold)}
+.step-num.red{background:rgba(233,69,96,.12);border-color:var(--red);color:var(--red)}
+.step-body{flex:1}
+.step-title{font-size:14px;font-weight:700;margin-bottom:2px}
+.step-sub{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* Notice */
+.notice{border-radius:10px;padding:11px 14px;margin:12px 0;font-size:13px;line-height:1.6;display:flex;gap:9px;align-items:flex-start}
+.notice.tip{background:rgba(0,184,148,.1);border:1px solid rgba(0,184,148,.25);color:#00b894}
+.notice.warn{background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.25);color:var(--gold)}
+.notice.danger{background:rgba(233,69,96,.08);border:1px solid rgba(233,69,96,.2);color:#ff6b6b}
+.notice.blue{background:rgba(116,185,255,.08);border:1px solid rgba(116,185,255,.2);color:var(--blue)}
+.notice-icon{font-size:15px;flex-shrink:0;margin-top:1px}
+
+/* Tags */
+.tag{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700}
+.tag-cyan{background:rgba(34,211,238,.15);color:var(--cyan)}
+.tag-gold{background:rgba(245,166,35,.15);color:var(--gold)}
+.tag-green{background:rgba(0,184,148,.15);color:var(--green)}
+.tag-red{background:rgba(233,69,96,.15);color:var(--red)}
+.tag-purple{background:rgba(162,155,254,.15);color:var(--purple)}
+.tag-gray{background:rgba(255,255,255,.08);color:var(--t2)}
+.tag-orange{background:rgba(245,166,35,.15);color:var(--orange)}
+
+/* Phone mockup */
+.phone-demo{background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:12px 0}
+.phone-bar{background:var(--bg2);padding:9px 14px;font-size:12px;color:var(--t2);border-bottom:1px solid var(--border)}
+.phone-content{padding:14px}
+
+/* Master chips */
+.master-grid{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0}
+.m-chip{padding:9px 12px;border-radius:11px;text-align:center;font-size:13px;font-weight:700;border:1.5px solid var(--border)}
+.m-chip.cyan{border-color:var(--cyan);background:rgba(34,211,238,.1);color:var(--cyan)}
+.m-chip.gold{border-color:var(--gold);background:rgba(245,166,35,.1);color:var(--gold)}
+.m-chip.gray{color:var(--t2)}
+
+/* Timeline */
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:'';position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--cyan),var(--gold))}
+.tl-item{position:relative;padding:10px 0 10px 18px;border-bottom:1px solid rgba(255,255,255,.04)}
+.tl-item:last-child{border:none}
+.tl-dot{position:absolute;left:-22px;top:14px;width:10px;height:10px;border-radius:50%;border:2px solid var(--cyan);background:var(--bg)}
+.tl-dot.gold{border-color:var(--gold)}
+.tl-label{font-size:10px;color:var(--t2);font-weight:700;margin-bottom:2px}
+.tl-text{font-size:14px;font-weight:600}
+.tl-sub{font-size:12px;color:var(--t2);margin-top:2px}
+
+/* Perm table */
+.perm-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:10px;overflow:hidden;margin:10px 0}
+.perm-table th{background:#1a1f2e;padding:9px 12px;font-size:12px;font-weight:700;color:var(--t2);text-align:left}
+.perm-table td{padding:9px 12px;font-size:13px;border-top:1px solid var(--border)}
+.perm-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+
+/* Color rows */
+.color-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--border)}
+.color-row:last-child{border:none}
+.color-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0}
+.color-name{min-width:60px}
+.color-desc{font-size:13px;color:var(--t2)}
+
+/* Button mockups */
+.btn-mock{display:inline-flex;align-items:center;gap:5px;padding:8px 12px;border-radius:8px;font-size:12px;font-weight:700;margin:3px}
+.btn-green-m{background:#22d3ee;color:#000}
+.btn-line-m{background:#06c755;color:#fff}
+.btn-red-m{background:none;border:1.5px solid var(--red);color:var(--red)}
+.btn-gray-m{background:var(--bg3);border:1px solid var(--border);color:var(--t2)}
+
+/* URL box */
+.url-box{background:var(--bg3);border:1.5px solid var(--border);border-radius:9px;padding:11px 14px;font-family:monospace;font-size:12px;color:var(--cyan);word-break:break-all;margin:8px 0;display:flex;align-items:center;gap:8px}
+
+/* Dialog mock */
+.dialog-mock{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px;margin:12px 0}
+.dialog-handle{width:32px;height:3px;background:var(--border);border-radius:2px;margin:0 auto 12px}
+.dialog-title{font-size:15px;font-weight:900;margin-bottom:10px}
+.dialog-label{font-size:11px;color:var(--t2);font-weight:700;margin-bottom:4px;letter-spacing:.3px}
+.dialog-input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:7px;padding:9px 11px;color:var(--text);font-size:14px;font-family:inherit}
+
+/* Copy box */
+.copy-box{background:var(--bg3);border:1.5px solid var(--border);border-radius:9px;padding:13px;text-align:center;font-size:17px;font-weight:700;letter-spacing:1px;margin:10px 0}
+
+/* Rules */
+.rule-item{display:flex;gap:10px;align-items:flex-start;background:var(--bg3);border-radius:9px;padding:11px 12px;margin-bottom:7px}
+.rule-icon{font-size:17px;flex-shrink:0}
+.rule-title{font-size:14px;font-weight:700;margin-bottom:1px}
+.rule-sub{font-size:12px;color:var(--t2)}
+
+/* FAQ */
+.faq-item{background:var(--bg2);border:1px solid var(--border);border-radius:11px;padding:14px;margin-bottom:8px}
+.faq-q{font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:6px}
+.faq-a{font-size:13px;color:var(--t2)}
+
+/* TOC */
+.toc{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;margin:20px 0}
+.toc-title{font-size:12px;font-weight:700;color:var(--t2);margin-bottom:12px;letter-spacing:.5px}
+.toc-list{display:flex;flex-direction:column;gap:4px}
+.toc-item{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:7px;text-decoration:none;color:var(--text);font-size:13px;transition:.15s}
+.toc-item:hover{background:rgba(34,211,238,.08);color:var(--cyan)}
+.toc-badge{width:20px;height:20px;border-radius:5px;background:var(--bg3);color:var(--t2);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+.divider{height:1px;background:var(--border);margin:32px 0}
+
+.footer{text-align:center;padding:30px 20px;color:var(--t2);font-size:13px;border-top:1px solid var(--border);margin-top:40px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-icon">🦴</div>
+  <h1>永平整復保健<br>師傅操作教學</h1>
+  <p>完整說明師傅 App 與客人預約系統操作流程</p>
+</div>
+
+<nav class="sticky-nav">
+  <a class="nav-item active" href="#install">📱 安裝</a>
+  <a class="nav-item" href="#login">🔐 登入</a>
+  <a class="nav-item" href="#schedule">📅 排班</a>
+  <a class="nav-item" href="#add">➕ 新增</a>
+  <a class="nav-item" href="#manage">✏️ 管理</a>
+  <a class="nav-item" href="#overview">🗓 全覽</a>
+  <a class="nav-item" href="#vacation">🔴 休假</a>
+  <a class="nav-item" href="#colors">🎨 顏色</a>
+  <a class="nav-item" href="#customer-app">🛍 客人App</a>
+  <a class="nav-item" href="#pending">📋 待確認</a>
+  <a class="nav-item" href="#tips">💡 技巧</a>
+</nav>
+
+<div class="content">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">📖 目錄</div>
+    <div class="toc-list">
+      <a class="toc-item" href="#install"><span class="toc-badge">1</span> 安裝 APP 到手機</a>
+      <a class="toc-item" href="#login"><span class="toc-badge">2</span> 登入系統</a>
+      <a class="toc-item" href="#schedule"><span class="toc-badge">3</span> 查看自己的排班</a>
+      <a class="toc-item" href="#add"><span class="toc-badge">4</span> 新增預約</a>
+      <a class="toc-item" href="#manage"><span class="toc-badge">5</span> 管理預約</a>
+      <a class="toc-item" href="#overview"><span class="toc-badge">6</span> 全覽（看所有師傅）</a>
+      <a class="toc-item" href="#vacation"><span class="toc-badge">7</span> 標記休假</a>
+      <a class="toc-item" href="#colors"><span class="toc-badge">8</span> 顏色標記說明</a>
+      <a class="toc-item" href="#customer-app"><span class="toc-badge">9</span> 客人預約 App</a>
+      <a class="toc-item" href="#pending"><span class="toc-badge">10</span> 待確認預約操作</a>
+      <a class="toc-item" href="#tips"><span class="toc-badge">11</span> 小技巧</a>
+    </div>
+  </div>
+
+  <!-- ① 安裝 -->
+  <div class="section" id="install">
+    <div class="sec-header">
+      <div class="sec-num red">1</div>
+      <div class="sec-title">安裝 APP 到手機</div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--blue)">
+      <div class="card-title">📱 iPhone（iOS）</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">用 Safari 開啟網址</div>
+            <div class="step-sub">一定要用 Safari，Chrome 不支援</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">點下方分享按鈕 □↑</div>
+            <div class="step-sub">在畫面最底部中間</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">選「加入主畫面」</div>
+            <div class="step-sub">往下滑找到這個選項</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">點「新增」完成</div>
+            <div class="step-sub">桌面會出現 🦴 圖示</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--green)">
+      <div class="card-title">🤖 Android</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">開啟老闆給的 .apk 檔</div>
+            <div class="step-sub">從 LINE 或 Google Drive 下載</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">允許安裝未知來源</div>
+            <div class="step-sub">手機會詢問，點允許即可</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">安裝完成</div>
+            <div class="step-sub">桌面出現 🦴 圖示</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice tip">
+      <span class="notice-icon">💡</span>
+      APP 需要網路才能使用，資料即時同步，不需要手動更新。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ② 登入 -->
+  <div class="section" id="login">
+    <div class="sec-header">
+      <div class="sec-num blue">2</div>
+      <div class="sec-title">登入系統</div>
+    </div>
+
+    <div class="card">
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">輸入帳號</div>
+            <div class="step-sub">老闆給你的帳號（中文名字）</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">輸入密碼</div>
+            <div class="step-sub">第一次登入請修改密碼，至少 6 個字元</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">點「登入」</div>
+            <div class="step-sub">登入後會記住帳號，下次不用重新輸入</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice warn">
+      <span class="notice-icon">⚠️</span>
+      密碼忘記請找老闆重設，系統無法自行找回密碼。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ③ 排班 -->
+  <div class="section" id="schedule">
+    <div class="sec-header">
+      <div class="sec-num green">3</div>
+      <div class="sec-title">查看自己的排班</div>
+    </div>
+
+    <div class="card">
+      <p style="font-size:14px;color:var(--t2);margin-bottom:12px">登入後預設顯示自己本月排班，左右箭頭切換月份。</p>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num" style="background:rgba(116,185,255,.12);border-color:var(--blue);color:var(--blue)">📅</div>
+          <div class="step-body">
+            <div class="step-title">月視圖</div>
+            <div class="step-sub">看整個月的預約</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background:rgba(116,185,255,.12);border-color:var(--blue);color:var(--blue)">📆</div>
+          <div class="step-body">
+            <div class="step-title">週視圖</div>
+            <div class="step-sub">只看這一週，格子較大</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background:rgba(116,185,255,.12);border-color:var(--blue);color:var(--blue)">👆</div>
+          <div class="step-body">
+            <div class="step-title">點預約格子</div>
+            <div class="step-sub">可以看客人詳情、編輯或複製</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background:rgba(245,166,35,.12);border-color:var(--gold);color:var(--gold)">⚡</div>
+          <div class="step-body">
+            <div class="step-title">選日查空檔</div>
+            <div class="step-sub">點工具列「⚡選日」，顯示今天還有哪些時段空著</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice tip">
+      <span class="notice-icon">⏱</span>
+      系統每 15 秒自動更新，小編剛新增的預約不用刷新就能看到。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ④ 新增 -->
+  <div class="section" id="add">
+    <div class="sec-header">
+      <div class="sec-num cyan">4</div>
+      <div class="sec-title">新增預約</div>
+    </div>
+
+    <div class="notice blue">
+      <span class="notice-icon">💡</span>
+      兩種方式：點空白格子，或按工具列的「＋ 新增」按鈕
+    </div>
+
+    <div class="card">
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">輸入姓名＋電話</div>
+            <div class="step-sub">連在一起輸入，例：許小姐0978822100<br>系統會自動分開姓名和電話</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">選人數</div>
+            <div class="step-sub">1～4 人，預設 1 人</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">選顏色標記</div>
+            <div class="step-sub">新客、舊客、卡位…（詳見第 8 節）</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">確認 ✓</div>
+            <div class="step-sub">完成！若該時段已有人系統會提示是否覆蓋</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice warn">
+      <span class="notice-icon">⚠️</span>
+      若客人曾放鳥 5 次以上，新增時系統會彈出警告，請謹慎接受預約。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⑤ 管理 -->
+  <div class="section" id="manage">
+    <div class="sec-header">
+      <div class="sec-num gold">5</div>
+      <div class="sec-title">管理預約</div>
+    </div>
+
+    <div class="notice blue">
+      <span class="notice-icon">👆</span>
+      點任何一格有預約的格子，底部彈出詳情面板
+    </div>
+
+    <div class="card">
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">✏️</div>
+          <div class="step-body">
+            <div class="step-title">編輯</div>
+            <div class="step-sub">修改姓名、電話、備註、人數、顏色標記</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">📋</div>
+          <div class="step-body">
+            <div class="step-title">複製到其他日期</div>
+            <div class="step-sub">選好目標日期和時間點「複製」，已佔用的時段會標示 ✕已佔</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">📌</div>
+          <div class="step-body">
+            <div class="step-title">暫存</div>
+            <div class="step-sub">先存起來，之後點空白格子直接貼上，適合快速複製到多個日期</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">↩</div>
+          <div class="step-body">
+            <div class="step-title">還原上一步</div>
+            <div class="step-sub">誤刪或誤移動可以點工具列「↩ 還原」救回來</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">🗑</div>
+          <div class="step-body">
+            <div class="step-title">刪除</div>
+            <div class="step-sub">可選擇一般刪除或標記「放鳥」，放鳥會計入客人的黑名單次數</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice tip">
+      <span class="notice-icon">💡</span>
+      長按拖曳預約格子可以直接移動到其他時間，不用進詳情面板。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⑥ 全覽 -->
+  <div class="section" id="overview">
+    <div class="sec-header">
+      <div class="sec-num purple">6</div>
+      <div class="sec-title">全覽（看所有師傅）</div>
+    </div>
+
+    <div class="card">
+      <p style="font-size:13px;color:var(--t2);margin-bottom:12px">點下方導覽列「🗓 全覽」切換，可以同時看到所有師傅的排班。</p>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">👁</div>
+          <div class="step-body">
+            <div class="step-title">篩選師傅</div>
+            <div class="step-sub">上方可以點師傅名字開關顯示，只看特定幾位</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">🔍</div>
+          <div class="step-body">
+            <div class="step-title">搜尋</div>
+            <div class="step-sub">輸入姓名或電話，結果會顯示是哪位師傅的預約，點結果自動跳到該週</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">⚡</div>
+          <div class="step-body">
+            <div class="step-title">選日查空檔</div>
+            <div class="step-sub">選日期後顯示每位師傅的空檔，點時段直接新增</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="font-size:15px;background:none;border-color:var(--border)">↔️</div>
+          <div class="step-body">
+            <div class="step-title">跨師傅移動</div>
+            <div class="step-sub">長按拖曳可以把預約從一位師傅移到另一位師傅</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⑦ 休假 -->
+  <div class="section" id="vacation">
+    <div class="sec-header">
+      <div class="sec-num red">7</div>
+      <div class="sec-title">標記休假</div>
+    </div>
+
+    <div class="card">
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num red">1</div>
+          <div class="step-body">
+            <div class="step-title">點「🔴 休假」按鈕</div>
+            <div class="step-sub">進入休假標記模式，按鈕變紅色</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num red">2</div>
+          <div class="step-body">
+            <div class="step-title">拖曳要休假的格子</div>
+            <div class="step-sub">電腦：Shift + 拖曳　手機：直接滑動空白格</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num red">3</div>
+          <div class="step-body">
+            <div class="step-title">放開自動儲存</div>
+            <div class="step-sub">格子會變成紅色「休」字，放開手指即完成</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num red">4</div>
+          <div class="step-body">
+            <div class="step-title">點「退出」離開休假模式</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice tip">
+      <span class="notice-icon">💡</span>
+      全覽頁面也有休假按鈕，可以直接在全覽幫各師傅標記。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⑧ 顏色 -->
+  <div class="section" id="colors">
+    <div class="sec-header">
+      <div class="sec-num gray">8</div>
+      <div class="sec-title">顏色標記說明</div>
+    </div>
+
+    <div class="card">
+      <div class="color-row">
+        <div class="color-dot" style="background:#888"></div>
+        <div class="color-name"><span class="tag tag-gray">舊客</span></div>
+        <div class="color-desc">一般回頭客，預設顏色</div>
+      </div>
+      <div class="color-row">
+        <div class="color-dot" style="background:#f5a623"></div>
+        <div class="color-name"><span class="tag tag-orange">新客</span></div>
+        <div class="color-desc">第一次來的客人，顯示 ★ 符號</div>
+      </div>
+      <div class="color-row">
+        <div class="color-dot" style="background:#22d3ee"></div>
+        <div class="color-name"><span class="tag tag-cyan">卡位</span></div>
+        <div class="color-desc">先佔位，還未確定客人</div>
+      </div>
+      <div class="color-row">
+        <div class="color-dot" style="background:#a29bfe"></div>
+        <div class="color-name"><span class="tag tag-purple">自訂</span></div>
+        <div class="color-desc">其他特殊標記</div>
+      </div>
+      <div class="color-row">
+        <div class="color-dot" style="background:#e94560"></div>
+        <div class="color-name"><span class="tag tag-red">休假</span></div>
+        <div class="color-desc">休息、不接客時段</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⑨ 客人 App -->
+  <div class="section" id="customer-app">
+    <div class="sec-header">
+      <div class="sec-num cyan">9</div>
+      <div class="sec-title">客人預約 App</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">客人預約連結</div>
+      <div class="url-box">🔗 https://liff.line.me/2009934614-9PWvOAfL</div>
+      <p style="font-size:13px;color:var(--t2)">在官方 LINE 帳號分享這個連結給客人，客人用 LINE 開啟即可預約。</p>
+    </div>
+
+    <div class="phone-demo">
+      <div class="phone-bar">🪄 永平整復保健 — 選擇師傅</div>
+      <div class="phone-content">
+        <div class="master-grid">
+          <div class="m-chip gray">不指定<br><small style="font-size:10px;color:#00b894">自動分配</small></div>
+          <div class="m-chip cyan">哲瑋老師<br><small style="font-size:10px">立即預約</small></div>
+          <div class="m-chip cyan">泓文老師<br><small style="font-size:10px">立即預約</small></div>
+          <div class="m-chip gold">許老師<br><small style="font-size:10px">需申請</small></div>
+          <div class="m-chip gold">魏老師<br><small style="font-size:10px">需申請</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--cyan)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <span class="tag tag-cyan">立即預約</span>
+        <span style="font-size:14px;font-weight:700">哲瑋老師 / 泓文老師 / 不指定</span>
+      </div>
+      <p style="font-size:13px;color:var(--t2);margin-bottom:10px">客人選日期→選時段→填資料→送出。時段即時從排班表讀取，已滿的自動灰掉。</p>
+      <div class="notice tip" style="margin:0">
+        <span class="notice-icon">💡</span>
+        不指定師傅：系統自動分配哲瑋或泓文的空位
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--gold)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <span class="tag tag-gold">需申請</span>
+        <span style="font-size:14px;font-weight:700">許老師 / 魏老師</span>
+      </div>
+      <p style="font-size:13px;color:var(--t2)">客人點選後直接跳出申請表單，填姓名、電話、人數、有無開刀、平日/假日希望時段，送出後等待確認。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">客人送出後看到的畫面</div>
+      <div class="phone-demo">
+        <div class="phone-bar">送出成功</div>
+        <div class="phone-content" style="font-size:13px;line-height:1.9;color:var(--t2)">
+          感謝預約！🙏<br>
+          老師和小編會盡快確認<br>
+          預約確認後再麻煩幫我準時抵達🙏<br><br>
+          <span style="color:var(--gold)">⚡遲到10分鐘內：無法做滿30分鐘！</span><br>
+          <span style="color:var(--gold)">⚡遲到超過15分鐘：請主動告知並協助改期！</span><br>
+          <span style="color:var(--red)">⚡放鳥2次 黑名單</span><br>
+          時間到沒出現沒告知，就是放鳥！<br><br>
+          我們都可以配合取消、改時間<br>
+          只要提前和我們說🙏🙏
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⑩ 待確認 -->
+  <div class="section" id="pending">
+    <div class="sec-header">
+      <div class="sec-num gold">10</div>
+      <div class="sec-title">待確認預約操作</div>
+    </div>
+
+    <div class="notice warn">
+      <span class="notice-icon">📋</span>
+      客人預約後狀態為「待確認」，需要師傅按確認後才會正式填入排班表。
+    </div>
+
+    <div class="phone-demo">
+      <div class="phone-bar">師傅 App 導覽列</div>
+      <div class="phone-content" style="display:flex;gap:0">
+        <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--t2)">📅 排班</div>
+        <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--t2)">🗓 全覽</div>
+        <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--t2)">👥 客戶</div>
+        <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:var(--gold);border-bottom:2px solid var(--gold)">📋 待確認<br><span style="background:var(--gold);color:#000;border-radius:8px;padding:1px 5px;font-size:10px">3</span></div>
+        <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--t2)">📊 數據</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">各角色看到的內容</div>
+      <table class="perm-table">
+        <tr><th>角色</th><th>看到的預約</th></tr>
+        <tr><td><b>哲瑋老師</b></td><td>只看自己的</td></tr>
+        <tr><td><b>泓文老師</b></td><td>只看自己的</td></tr>
+        <tr><td><b>魏老師</b></td><td>只看自己的申請</td></tr>
+        <tr><td><b>許老師 / Hanna</b></td><td>看全部師傅</td></tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">確認操作按鈕</div>
+      <div style="margin:8px 0">
+        <div class="btn-mock btn-line">💬 LINE聯絡</div>
+        <div class="btn-mock btn-green-m">✓ 確認預約</div>
+        <div class="btn-mock btn-red-m">✗ 拒絕</div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--cyan)">
+      <div style="font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:12px">▶ 哲瑋/泓文的預約</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body"><div class="step-title">按「✓ 確認預約」</div></div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">跳出客人資訊</div>
+            <div class="copy-box" style="margin-top:6px;font-size:15px">王小明0912345678</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">按「📋 複製」</div>
+            <div class="step-sub">客人資訊複製到剪貼簿</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">按「💬 前往 LINE 對話」</div>
+            <div class="step-sub">自動跳到和客人的聊天室</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <div class="step-title">長按貼上 → 填備註名稱</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <div class="step-title">傳訊息通知客人已確認</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--gold)">
+      <div style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:12px">▶ 許老師/魏老師的申請</div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num gold">1</div>
+          <div class="step-body">
+            <div class="step-title">先按「💬 LINE聯絡」</div>
+            <div class="step-sub">和客人確認可以的時間</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num gold">2</div>
+          <div class="step-body">
+            <div class="step-title">回到 App 按「✓ 確認預約」</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num gold">3</div>
+          <div class="step-body">
+            <div class="step-title">填入日期和時段</div>
+            <div class="dialog-mock" style="margin-top:8px">
+              <div class="dialog-handle"></div>
+              <div class="dialog-title" style="font-size:14px">確認預約 - 王小明</div>
+              <div style="background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);border-radius:7px;padding:8px 10px;margin-bottom:10px;font-size:12px;color:var(--gold)">⚡ 申請制，請填入與客人確認的時間</div>
+              <div style="margin-bottom:8px">
+                <div class="dialog-label">日期</div>
+                <input class="dialog-input" value="2026-05-10" readonly>
+              </div>
+              <div>
+                <div class="dialog-label">時段</div>
+                <select class="dialog-input"><option>14:00</option></select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num gold">4</div>
+          <div class="step-body">
+            <div class="step-title">按「確認填入排班」</div>
+            <div class="step-sub">自動寫入排班表 ✅</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num gold">5</div>
+          <div class="step-body">
+            <div class="step-title">複製資訊 → LINE 通知客人</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notice danger">
+      <span class="notice-icon">⚠️</span>
+      拒絕後客人不會自動收到通知，請手動到 LINE 告知。
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ⑪ 小技巧 -->
+  <div class="section" id="tips">
+    <div class="sec-header">
+      <div class="sec-num green">11</div>
+      <div class="sec-title">小技巧</div>
+    </div>
+
+    <div class="rule-item">
+      <div class="rule-icon">📞</div>
+      <div>
+        <div class="rule-title">長按客人姓名複製</div>
+        <div class="rule-sub">在客戶列表（👥 客戶）頁面，長按姓名 0.6 秒自動複製到剪貼簿</div>
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-icon">↩</div>
+      <div>
+        <div class="rule-title">誤操作可以還原</div>
+        <div class="rule-sub">新增、刪除、移動都可以點「↩ 還原」按鈕救回，每頁各自有一個</div>
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-icon">☀️</div>
+      <div>
+        <div class="rule-title">切換深色 / 淺色模式</div>
+        <div class="rule-sub">右上角 ☀️🌙 按鈕切換，依個人喜好</div>
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-icon">⬜</div>
+      <div>
+        <div class="rule-title">調整格子大小</div>
+        <div class="rule-sub">工具列有「欄寬」和「列高」滑桿，依手機大小調整到最順眼</div>
+      </div>
+    </div>
+    <div class="rule-item">
+      <div class="rule-icon">🔍</div>
+      <div>
+        <div class="rule-title">搜尋客人</div>
+        <div class="rule-sub">輸入姓名或電話，點結果自動跳到對應的週</div>
+      </div>
+    </div>
+
+    <div class="notice tip" style="margin-top:16px">
+      <span class="notice-icon">⏱</span>
+      APP 每 15 秒自動更新，小編剛新增的預約你不用刷新就能看到。
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <strong>永平整復保健 預約系統</strong><br>
+  有問題請找老闆 🦴
+</div>
+
+<script>
+const sections = document.querySelectorAll('.section');
+const navItems = document.querySelectorAll('.nav-item');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      navItems.forEach(n=>n.classList.remove('active'));
+      const active = document.querySelector(`.nav-item[href="#${e.target.id}"]`);
+      if(active){active.classList.add('active');active.scrollIntoView({block:'nearest',inline:'center'});}
+    }
+  });
+},{threshold:0.3,rootMargin:'-10% 0px -60% 0px'});
+sections.forEach(s=>observer.observe(s));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
