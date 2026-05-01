@@ -628,7 +628,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-seri
       <div class="color-row">
         <div class="color-dot" style="background:#22d3ee"></div>
         <div class="color-name"><span class="tag tag-cyan">卡位</span></div>
-        <div class="color-desc">先佔位，還未確定客人</div>
+        <div class="color-desc">先佔位，還未確定客人；填上真名後系統自動分類為新/舊客</div>
       </div>
       <div class="color-row">
         <div class="color-dot" style="background:#a29bfe"></div>
@@ -640,6 +640,26 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-seri
         <div class="color-name"><span class="tag tag-red">休假</span></div>
         <div class="color-desc">休息、不接客時段</div>
       </div>
+      <div class="color-row">
+        <div class="color-dot" style="background:#00b894"></div>
+        <div class="color-name"><span class="tag tag-green">售後</span></div>
+        <div class="color-desc">售後服務追蹤，不計入客流人數</div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--cyan);margin-top:12px">
+      <div class="card-title">📊 人數計算規則</div>
+      <p style="font-size:13px;color:var(--t2);margin-bottom:8px">「客戶」「數據」頁面的人數統計，只計算 <b style="color:var(--text)">使用者真的有寫名字</b> 的預約。</p>
+      <table class="perm-table">
+        <tr><th>情境</th><th>計入人數？</th></tr>
+        <tr><td>舊客「王小明」</td><td style="color:var(--green)">✓ 計入</td></tr>
+        <tr><td>新客「林大華」</td><td style="color:var(--green)">✓ 計入</td></tr>
+        <tr><td>卡位 + 名字「卡位」（預設值）</td><td style="color:var(--red)">✗ 不計</td></tr>
+        <tr><td>卡位 + 名字「李小姐」</td><td style="color:var(--green)">✓ 計入</td></tr>
+        <tr><td>自訂 + 名字「自訂」（預設值）</td><td style="color:var(--red)">✗ 不計</td></tr>
+        <tr><td>自訂 + 名字「VIP」</td><td style="color:var(--green)">✓ 計入</td></tr>
+        <tr><td>休假 / 售後</td><td style="color:var(--red)">✗ 永不計入</td></tr>
+      </table>
     </div>
   </div>
 
@@ -724,6 +744,80 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-seri
         </div>
       </div>
     </div>
+
+    <div class="card" style="border-left:3px solid var(--red);margin-top:14px">
+      <div class="card-title">❌ 客人「申請取消」功能 (新)</div>
+      <p style="font-size:13px;color:var(--t2);margin-bottom:10px">客人在 LINE 點開 app，到「我的預約」頁，可以看到自己未來的所有預約。</p>
+
+      <table class="perm-table">
+        <tr><th>距離預約時間</th><th>客人能做什麼</th></tr>
+        <tr><td><b>≥ 24 小時</b></td><td>看到 <span class="tag tag-red">申請取消</span> 按鈕，可自助申請</td></tr>
+        <tr><td><b>&lt; 24 小時</b></td><td>只能用 <span class="tag tag-green">💬 聯絡師傅</span> 直接傳 LINE</td></tr>
+      </table>
+
+      <div class="phone-demo" style="margin-top:12px">
+        <div class="phone-bar">我的預約</div>
+        <div class="phone-content">
+          <div style="background:var(--bg3);border-radius:10px;padding:12px;display:flex;align-items:center;gap:10px">
+            <div style="background:#0d1117;border-radius:8px;padding:6px 10px;text-align:center;min-width:46px">
+              <div style="font-size:9px;color:var(--t2)">5月</div>
+              <div style="font-size:18px;font-weight:900">10</div>
+              <div style="font-size:9px;color:var(--t2)">週日</div>
+            </div>
+            <div style="flex:1">
+              <div style="font-size:16px;font-weight:900;color:var(--cyan)">14:00</div>
+              <div style="font-size:11px;color:var(--t2)">哲瑋老師</div>
+              <div style="display:flex;gap:5px;margin-top:6px">
+                <span style="font-size:10px;padding:3px 8px;border-radius:6px;border:1.5px solid var(--cyan);color:var(--cyan)">修改時間</span>
+                <span style="font-size:10px;padding:3px 8px;border-radius:6px;border:1.5px solid var(--red);color:var(--red)">申請取消</span>
+              </div>
+            </div>
+            <span style="font-size:10px;padding:2px 7px;border-radius:8px;background:rgba(0,184,148,.15);color:var(--green)">已確認</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="steps" style="margin-top:14px">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">客人按「申請取消」</div>
+            <div class="step-sub">系統跳出輸入框，可選填取消原因</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">確認後該預約變紅色標籤</div>
+            <div class="step-sub">顯示「取消申請中」，避免重複申請</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">師傅 LINE 即時收到通知</div>
+            <div style="background:var(--bg3);border-radius:10px;padding:12px;font-size:12px;line-height:1.8;border-left:3px solid var(--red);margin-top:6px">
+              ❌ 客人申請取消預約<br>
+              日期：2026-05-10 14:00<br>
+              原因：臨時有事<br><br>
+              請至師傅 app「📋 待確認 → 取消請求」處理
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">排班表上的格子加 ❌ 標記</div>
+            <div class="step-sub">名字前面顯示紅色 ❌，提醒師傅這格客人想取消</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notice warn" style="margin-top:12px">
+        <span class="notice-icon">⚠️</span>
+        <b>申請取消 ≠ 已取消</b>。客人申請後，時段仍會保留，要等師傅在「待確認 → 取消請求」按「同意取消」後才會正式釋出。
+      </div>
+    </div>
   </div>
 
   <div class="divider"></div>
@@ -737,7 +831,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-seri
 
     <div class="notice warn">
       <span class="notice-icon">📋</span>
-      客人預約後狀態為「待確認」，需要師傅按確認後才會正式填入排班表。
+      「待確認」分頁有 3 個子分頁：<b style="color:var(--cyan)">新預約</b>、<b style="color:var(--red)">取消請求</b>、<b style="color:var(--t2)">取消歷史</b>。導覽列上的紅色數字會同時計入「新預約」和「取消請求」兩種待處理項目。
     </div>
 
     <div class="phone-demo">
@@ -746,8 +840,17 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-seri
         <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--t2)">📅 排班</div>
         <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--t2)">🗓 全覽</div>
         <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--t2)">👥 客戶</div>
-        <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:var(--gold);border-bottom:2px solid var(--gold)">📋 待確認<br><span style="background:var(--gold);color:#000;border-radius:8px;padding:1px 5px;font-size:10px">3</span></div>
+        <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;color:var(--gold);border-bottom:2px solid var(--gold)">📋 待確認<br><span style="background:var(--gold);color:#000;border-radius:8px;padding:1px 5px;font-size:10px">4</span></div>
         <div style="flex:1;padding:10px 4px;text-align:center;font-size:11px;color:var(--t2)">📊 數據</div>
+      </div>
+    </div>
+
+    <div class="phone-demo">
+      <div class="phone-bar">待確認分頁的 3 個子分頁</div>
+      <div class="phone-content" style="display:flex;gap:6px">
+        <div style="flex:1;padding:7px 4px;text-align:center;font-size:11px;font-weight:700;background:var(--cyan);color:#000;border-radius:8px">新預約 (3)</div>
+        <div style="flex:1;padding:7px 4px;text-align:center;font-size:11px;font-weight:700;border:1.5px solid var(--red);color:var(--red);border-radius:8px">取消請求 (1)</div>
+        <div style="flex:1;padding:7px 4px;text-align:center;font-size:11px;font-weight:700;border:1.5px solid var(--border);color:var(--t2);border-radius:8px">取消歷史</div>
       </div>
     </div>
 
@@ -762,74 +865,32 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-seri
       </table>
     </div>
 
-    <div class="card">
-      <div class="card-title">確認操作按鈕</div>
+    <!-- 子分頁 1: 新預約 -->
+    <div class="card" style="border-left:3px solid var(--cyan);margin-top:18px">
+      <div style="font-size:15px;font-weight:900;color:var(--cyan);margin-bottom:6px">🆕 子分頁 1 ─ 新預約</div>
+      <p style="font-size:12px;color:var(--t2);margin-bottom:12px">客人預約後狀態為「待確認」，需要師傅按確認後才會正式填入排班表。</p>
+
+      <div class="card-title">操作按鈕</div>
       <div style="margin:8px 0">
         <div class="btn-mock btn-line">💬 LINE聯絡</div>
         <div class="btn-mock btn-green-m">✓ 確認預約</div>
         <div class="btn-mock btn-red-m">✗ 拒絕</div>
       </div>
-    </div>
 
-    <div class="card" style="border-left:3px solid var(--cyan)">
-      <div style="font-size:14px;font-weight:700;color:var(--cyan);margin-bottom:12px">▶ 哲瑋/泓文的預約</div>
+      <div style="font-size:13px;font-weight:700;color:var(--cyan);margin:16px 0 8px">▶ 哲瑋/泓文的預約</div>
       <div class="steps">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <div class="step-body"><div class="step-title">按「✓ 確認預約」</div></div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">跳出客人資訊</div>
-            <div class="copy-box" style="margin-top:6px;font-size:15px">王小明0912345678</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">按「📋 複製」</div>
-            <div class="step-sub">客人資訊複製到剪貼簿</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <div class="step-title">按「💬 前往 LINE 對話」</div>
-            <div class="step-sub">自動跳到和客人的聊天室</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">5</div>
-          <div class="step-body">
-            <div class="step-title">長按貼上 → 填備註名稱</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">6</div>
-          <div class="step-body">
-            <div class="step-title">傳訊息通知客人已確認</div>
-          </div>
-        </div>
+        <div class="step-item"><div class="step-num">1</div><div class="step-body"><div class="step-title">按「✓ 確認預約」</div></div></div>
+        <div class="step-item"><div class="step-num">2</div><div class="step-body"><div class="step-title">跳出客人資訊</div><div class="copy-box" style="margin-top:6px;font-size:15px">王小明0912345678</div></div></div>
+        <div class="step-item"><div class="step-num">3</div><div class="step-body"><div class="step-title">按「📋 複製」</div><div class="step-sub">客人資訊複製到剪貼簿</div></div></div>
+        <div class="step-item"><div class="step-num">4</div><div class="step-body"><div class="step-title">按「💬 前往 LINE 對話」</div><div class="step-sub">自動跳到和客人的聊天室</div></div></div>
+        <div class="step-item"><div class="step-num">5</div><div class="step-body"><div class="step-title">長按貼上 → 填備註名稱</div></div></div>
+        <div class="step-item"><div class="step-num">6</div><div class="step-body"><div class="step-title">傳訊息通知客人已確認</div></div></div>
       </div>
-    </div>
 
-    <div class="card" style="border-left:3px solid var(--gold)">
-      <div style="font-size:14px;font-weight:700;color:var(--gold);margin-bottom:12px">▶ 許老師/魏老師的申請</div>
+      <div style="font-size:13px;font-weight:700;color:var(--gold);margin:16px 0 8px">▶ 許老師/魏老師的申請</div>
       <div class="steps">
-        <div class="step-item">
-          <div class="step-num gold">1</div>
-          <div class="step-body">
-            <div class="step-title">先按「💬 LINE聯絡」</div>
-            <div class="step-sub">和客人確認可以的時間</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num gold">2</div>
-          <div class="step-body">
-            <div class="step-title">回到 App 按「✓ 確認預約」</div>
-          </div>
-        </div>
+        <div class="step-item"><div class="step-num gold">1</div><div class="step-body"><div class="step-title">先按「💬 LINE聯絡」</div><div class="step-sub">和客人確認可以的時間</div></div></div>
+        <div class="step-item"><div class="step-num gold">2</div><div class="step-body"><div class="step-title">回到 App 按「✓ 確認預約」</div></div></div>
         <div class="step-item">
           <div class="step-num gold">3</div>
           <div class="step-body">
@@ -838,36 +899,101 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC',sans-seri
               <div class="dialog-handle"></div>
               <div class="dialog-title" style="font-size:14px">確認預約 - 王小明</div>
               <div style="background:rgba(245,166,35,.1);border:1px solid rgba(245,166,35,.3);border-radius:7px;padding:8px 10px;margin-bottom:10px;font-size:12px;color:var(--gold)">⚡ 申請制，請填入與客人確認的時間</div>
-              <div style="margin-bottom:8px">
-                <div class="dialog-label">日期</div>
-                <input class="dialog-input" value="2026-05-10" readonly>
-              </div>
-              <div>
-                <div class="dialog-label">時段</div>
-                <select class="dialog-input"><option>14:00</option></select>
-              </div>
+              <div style="margin-bottom:8px"><div class="dialog-label">日期</div><input class="dialog-input" value="2026-05-10" readonly></div>
+              <div><div class="dialog-label">時段</div><select class="dialog-input"><option>14:00</option></select></div>
             </div>
           </div>
         </div>
-        <div class="step-item">
-          <div class="step-num gold">4</div>
-          <div class="step-body">
-            <div class="step-title">按「確認填入排班」</div>
-            <div class="step-sub">自動寫入排班表 ✅</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num gold">5</div>
-          <div class="step-body">
-            <div class="step-title">複製資訊 → LINE 通知客人</div>
-          </div>
-        </div>
+        <div class="step-item"><div class="step-num gold">4</div><div class="step-body"><div class="step-title">按「確認填入排班」</div><div class="step-sub">自動寫入排班表 ✅</div></div></div>
+        <div class="step-item"><div class="step-num gold">5</div><div class="step-body"><div class="step-title">複製資訊 → LINE 通知客人</div></div></div>
+      </div>
+
+      <div class="notice danger" style="margin-top:12px">
+        <span class="notice-icon">⚠️</span>
+        拒絕後客人不會自動收到通知，請手動到 LINE 告知。
       </div>
     </div>
 
-    <div class="notice danger">
-      <span class="notice-icon">⚠️</span>
-      拒絕後客人不會自動收到通知，請手動到 LINE 告知。
+    <!-- 子分頁 2: 取消請求 -->
+    <div class="card" style="border-left:3px solid var(--red);margin-top:18px">
+      <div style="font-size:15px;font-weight:900;color:var(--red);margin-bottom:6px">❌ 子分頁 2 ─ 取消請求</div>
+      <p style="font-size:12px;color:var(--t2);margin-bottom:12px">客人在客人 app「我的預約」頁按「申請取消」（24 小時前才有此按鈕）後出現在這裡。客人 LINE 也會即時收到通知。</p>
+
+      <div class="card-title">看到的卡片內容</div>
+      <div class="phone-demo">
+        <div class="phone-bar">取消請求卡片</div>
+        <div class="phone-content">
+          <div style="background:var(--bg3);border-radius:10px;padding:12px">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
+              <span style="font-size:14px;font-weight:700;color:var(--cyan)">14:00</span>
+              <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(233,69,96,.15);color:var(--red)">取消申請中</span>
+              <span style="font-size:10px;padding:2px 6px;border-radius:8px;background:rgba(116,185,255,.12);color:var(--blue)">哲瑋老師</span>
+            </div>
+            <div style="font-size:14px;font-weight:700">王小明</div>
+            <div style="font-size:11px;color:var(--t2);margin-top:1px">📞 0912345678</div>
+            <div style="font-size:11px;color:var(--red);margin-top:6px;background:rgba(233,69,96,.08);border:1px solid rgba(233,69,96,.3);border-radius:6px;padding:7px 9px">
+              <div style="font-weight:700;margin-bottom:2px">取消原因</div>
+              <div>臨時有事</div>
+              <div style="font-size:10px;color:var(--t2);margin-top:3px">申請時間：2026-05-08 14:30:21</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-title" style="margin-top:14px">操作按鈕</div>
+      <div style="margin:8px 0">
+        <div class="btn-mock btn-line">💬 LINE聯絡</div>
+        <div class="btn-mock" style="background:var(--red);color:#fff;border-color:var(--red)">✓ 同意取消</div>
+        <div class="btn-mock" style="background:transparent;color:var(--blue);border-color:var(--blue)">✗ 不同意</div>
+      </div>
+
+      <table class="perm-table" style="margin-top:12px">
+        <tr><th>按鈕</th><th>結果</th></tr>
+        <tr><td><b style="color:var(--red)">✓ 同意取消</b></td><td>正式取消，<b>時段釋出可被別人預約</b>，紀錄保留在「取消歷史」</td></tr>
+        <tr><td><b style="color:var(--blue)">✗ 不同意</b></td><td>還原為「已確認」狀態，建議先用 LINE 跟客人說明原因再按</td></tr>
+        <tr><td><b style="color:#06c755">💬 LINE聯絡</b></td><td>開啟跟此客人的 LINE 對話</td></tr>
+      </table>
+    </div>
+
+    <!-- 子分頁 3: 取消歷史 -->
+    <div class="card" style="border-left:3px solid var(--t2);margin-top:18px">
+      <div style="font-size:15px;font-weight:900;color:var(--t2);margin-bottom:6px">📭 子分頁 3 ─ 取消歷史</div>
+      <p style="font-size:12px;color:var(--t2);margin-bottom:12px">記錄所有「已取消」「放鳥」的預約，方便回查。可切換顯示近 7 天 / 30 天 / 90 天。</p>
+
+      <div class="phone-demo">
+        <div class="phone-bar">時間範圍切換</div>
+        <div class="phone-content" style="display:flex;gap:5px">
+          <div style="flex:1;padding:5px 0;text-align:center;font-size:11px;background:var(--bg3);border:1px solid var(--border);color:var(--t2);border-radius:6px">近 7 天</div>
+          <div style="flex:1;padding:5px 0;text-align:center;font-size:11px;background:var(--border);color:var(--text);border:1px solid var(--border);border-radius:6px">近 30 天</div>
+          <div style="flex:1;padding:5px 0;text-align:center;font-size:11px;background:var(--bg3);border:1px solid var(--border);color:var(--t2);border-radius:6px">近 90 天</div>
+        </div>
+      </div>
+
+      <div class="card-title" style="margin-top:14px">會出現在這裡的紀錄</div>
+      <table class="perm-table">
+        <tr><th>類型</th><th>標籤</th></tr>
+        <tr><td>客人申請取消，師傅同意</td><td><span class="tag tag-gray">已取消</span></td></tr>
+        <tr><td>師傅在排班表標記放鳥</td><td><span class="tag tag-red">放鳥</span></td></tr>
+        <tr><td>師傅拒絕的新預約申請</td><td><span class="tag tag-gray">已取消</span></td></tr>
+      </table>
+
+      <div class="notice tip" style="margin-top:12px">
+        <span class="notice-icon">💡</span>
+        每筆紀錄會顯示原預約時間 + 取消時間，並保留「💬 LINE 聯絡」按鈕，方便事後再聯絡。
+      </div>
+    </div>
+
+    <!-- 排班表 ❌ 標記 -->
+    <div class="card" style="border-left:3px solid var(--red);margin-top:18px">
+      <div class="card-title">📅 排班表上看到的「待取消」標記</div>
+      <p style="font-size:13px;color:var(--t2);margin-bottom:10px">客人申請取消但師傅還沒處理時，<b style="color:var(--text)">排班表 + 全覽</b> 兩邊的格子都會出現提醒：</p>
+      <div style="background:var(--bg3);border-radius:10px;padding:12px;text-align:center">
+        <div style="display:inline-flex;align-items:center;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;opacity:0.6">
+          <span style="color:var(--red);margin-right:4px">❌</span>
+          <span style="color:var(--text);font-weight:700">王小明</span>
+        </div>
+        <div style="font-size:11px;color:var(--t2);margin-top:8px">名字前出現紅色 ❌ + 半透明，一眼就看到</div>
+      </div>
     </div>
   </div>
 
